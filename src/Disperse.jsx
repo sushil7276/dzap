@@ -58,8 +58,7 @@ function Disperse({ obj }) {
 
     return false;
   }
-  const abc = hasDuplicateAddresses(transactions);
-  console.log(abc);
+
   const handleProcessTransactions = () => {
     if (hasDuplicateAddresses(transactions)) {
       return showAlert(`Duplicate`);
