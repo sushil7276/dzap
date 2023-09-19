@@ -99,7 +99,7 @@ function Disperse({ obj }) {
             >
               <div className="p-2 flex-grow-1">
                 <span>
-                  <i class="fa-solid fa-circle-exclamation"></i>
+                  <i className="fa-solid fa-circle-exclamation"></i>
                 </span>
                 <span style={{ marginLeft: "10%" }}>{alert}</span>
               </div>
