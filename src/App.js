@@ -31,7 +31,7 @@ function App() {
 
     let amount = words[1];
     if (!containsOnlyDigits(amount)) {
-      showAlert("Amount must be a number");
+      showAlert("wrong amount");
       return;
     }
     amount = Number(amount);
@@ -53,17 +53,21 @@ function App() {
               onChange={(e) => setId(e.target.value)}
             />
             <label htmlFor="id">separated by ',' or ' ' or '='</label>
-            <button className="btn btn-primary form-control mt-2" type="submit">
+            <button
+              className="btn btn-primary form-control mt-2"
+              style={{ backgroundColor: "#0016a9" }}
+              type="submit"
+            >
               Submit
             </button>
           </form>
         </div>
         {alert ? (
-          <div
-            className="alert alert-danger mt-3 d-flex align-items-center"
-            role="alert"
-          >
-            <div>{alert}</div>
+          <div className="alert mt-3 text-danger border border-danger">
+            <span>
+              <i class="fa-solid fa-circle-exclamation"></i>
+            </span>
+            <span style={{ marginLeft: "10%" }}>{alert}</span>
           </div>
         ) : null}
         <Disperse obj={data} />

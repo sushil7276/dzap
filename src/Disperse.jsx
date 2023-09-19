@@ -58,10 +58,11 @@ function Disperse({ obj }) {
 
     return false;
   }
-
+  const abc = hasDuplicateAddresses(transactions);
+  console.log(abc);
   const handleProcessTransactions = () => {
     if (hasDuplicateAddresses(transactions)) {
-      return showAlert("Duplicate addresses found");
+      return showAlert(`Duplicate`);
     }
 
     setUserValue(transactions);
@@ -76,21 +77,34 @@ function Disperse({ obj }) {
       {transactions && transactions.length > 0 ? (
         <div>
           <label className="mt-3">Addresses with Amounts</label>
-          <div className="mt-1" style={{ backgroundColor: "#d6d6d6" }}>
-            <ol className="pr-3 pt-2 pb-2">
-              {transactions.map((transaction, index) => (
-                <li key={index}>
-                  {transaction.address} {transaction.amount}
-                </li>
-              ))}
-            </ol>
+          <div className="mt-1" style={{ backgroundColor: "rgb(232 232 232)" }}>
+            <div className="container p-4">
+              <div className="row fs-6 fw-bold">
+                {transactions.map((transaction, index) => (
+                  <p key={index}>
+                    <span style={{ color: "rgb(145 145 145)" }}>
+                      {index + 1} |
+                    </span>
+                    <span style={{ marginLeft: "6px" }}>
+                      {transaction.address} {transaction.amount}
+                    </span>
+                  </p>
+                ))}
+              </div>
+            </div>
           </div>
           {alert ? (
             <div
-              className="alert alert-danger mt-3 d-flex align-items-center"
+              className="alert text-danger border border-danger mt-3 d-flex align-items-center"
               role="alert"
             >
-              <div className="p-2 flex-grow-1">{alert}</div>
+              <div className="p-2 flex-grow-1">
+                <span>
+                  <i class="fa-solid fa-circle-exclamation"></i>
+                </span>
+                <span style={{ marginLeft: "10%" }}>{alert}</span>
+              </div>
+
               <div className="p-2">
                 <button
                   className="btn btn-outline-none-danger btn-sm"
@@ -98,7 +112,8 @@ function Disperse({ obj }) {
                   onClick={handleKeepFirstOne}
                 >
                   Keep First One
-                </button>
+                </button>{" "}
+                |
                 <button
                   className="btn btn-outline-none-danger btn-sm"
                   style={{ color: "red" }}
@@ -112,7 +127,11 @@ function Disperse({ obj }) {
 
           <button
             className="btn btn-primary form-control mt-2"
-            style={mode ? { backgroundColor: "#712cf9" } : null}
+            style={
+              mode
+                ? { backgroundColor: "#712cf9" }
+                : { backgroundColor: "#0016a9" }
+            }
             disabled={transactions.length === 0}
             onClick={handleProcessTransactions}
           >
